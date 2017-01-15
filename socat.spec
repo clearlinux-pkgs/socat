@@ -4,7 +4,7 @@
 #
 Name     : socat
 Version  : 1.7.3.1
-Release  : 2
+Release  : 3
 URL      : http://www.dest-unreach.org/socat/download/socat-1.7.3.1.tar.gz
 Source0  : http://www.dest-unreach.org/socat/download/socat-1.7.3.1.tar.gz
 Summary  : socat - multipurpose relay
@@ -41,10 +41,13 @@ doc components for the socat package.
 %patch1 -p1
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1484491589
 %configure --disable-static --enable-help --enable-stdio --enable-fdnum --enable-file --enable-creat --enable-gopen --enable-pipe --enable-termios --enable-unix --enable-ip4 --enable-ip6 --enable-rawip --enable-tcp --enable-udp --enable-listen --enable-proxy --enable-exec --enable-system --enable-pty --enable-readline --enable-openssl --enable-sycls --enable-filan --enable-retry --enable-libwrap --enable-fips
 make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1484491589
 rm -rf %{buildroot}
 %make_install
 
