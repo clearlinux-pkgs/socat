@@ -4,7 +4,7 @@
 #
 Name     : socat
 Version  : 1.7.3.2
-Release  : 7
+Release  : 8
 URL      : http://www.dest-unreach.org/socat/download/socat-1.7.3.2.tar.gz
 Source0  : http://www.dest-unreach.org/socat/download/socat-1.7.3.2.tar.gz
 Summary  : socat - multipurpose relay
