@@ -4,18 +4,20 @@
 #
 Name     : socat
 Version  : 1.7.3.2
-Release  : 9
+Release  : 10
 URL      : http://www.dest-unreach.org/socat/download/socat-1.7.3.2.tar.gz
 Source0  : http://www.dest-unreach.org/socat/download/socat-1.7.3.2.tar.gz
 Summary  : socat - multipurpose relay
 Group    : Development/Tools
 License  : GPL-2.0 OpenSSL
-Requires: socat-bin
-Requires: socat-doc
+Requires: socat-bin = %{version}-%{release}
+Requires: socat-license = %{version}-%{release}
+Requires: socat-man = %{version}-%{release}
 BuildRequires : libgcrypt-dev
 BuildRequires : openssl-dev
 BuildRequires : readline-dev
 Patch1: 0001-Adding-stddef-to-nestlex.c.patch
+Patch2: 0002-Clear-Linux-also-needs-lcrypto.patch
 
 %description
 socat is a relay for bidirectional data transfer between two independent data
@@ -26,32 +28,49 @@ etc.), a program, or an arbitrary combination of two of these.
 %package bin
 Summary: bin components for the socat package.
 Group: Binaries
+Requires: socat-license = %{version}-%{release}
+Requires: socat-man = %{version}-%{release}
 
 %description bin
 bin components for the socat package.
 
 
-%package doc
-Summary: doc components for the socat package.
-Group: Documentation
+%package license
+Summary: license components for the socat package.
+Group: Default
 
-%description doc
-doc components for the socat package.
+%description license
+license components for the socat package.
+
+
+%package man
+Summary: man components for the socat package.
+Group: Default
+
+%description man
+man components for the socat package.
 
 
 %prep
 %setup -q -n socat-1.7.3.2
 %patch1 -p1
+%patch2 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1490191003
+export SOURCE_DATE_EPOCH=1542690770
 %configure --disable-static --enable-help --enable-stdio --enable-fdnum --enable-file --enable-creat --enable-gopen --enable-pipe --enable-termios --enable-unix --enable-ip4 --enable-ip6 --enable-rawip --enable-tcp --enable-udp --enable-listen --enable-proxy --enable-exec --enable-system --enable-pty --enable-readline --enable-openssl --enable-sycls --enable-filan --enable-retry --enable-libwrap --enable-fips
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1490191003
+export SOURCE_DATE_EPOCH=1542690770
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/socat
+cp COPYING %{buildroot}/usr/share/package-licenses/socat/COPYING
+cp COPYING.OpenSSL %{buildroot}/usr/share/package-licenses/socat/COPYING.OpenSSL
 %make_install
 
 %files
@@ -63,6 +82,11 @@ rm -rf %{buildroot}
 /usr/bin/procan
 /usr/bin/socat
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/socat/COPYING
+/usr/share/package-licenses/socat/COPYING.OpenSSL
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/socat.1

@@ -1,0 +1,18 @@
+Clear Linux also needs -lcrypto
+
+Signed-off-by: Thiago Macieira <thiago.macieira@intel.com>
+diff -ur socat-1.7.3.2.old/configure socat-1.7.3.2/configure
+--- socat-1.7.3.2.old/configure	2017-01-22 22:30:32.000000000 -0800
++++ socat-1.7.3.2/configure	2018-11-19 21:08:54.226582490 -0800
+@@ -5112,9 +5112,9 @@
+ else
+    LIBS0="$LIBS"
+       if test -n "$OPENSSL_ROOT"; then
+-	L="$OPENSSL_ROOT/lib"; LIBS="$LIBS -L$L -lssl"
++	L="$OPENSSL_ROOT/lib"; LIBS="$LIBS -L$L -lssl -lcrypto"
+       else
+-	LIBS="$LIBS -lssl"
++	LIBS="$LIBS -lssl -lcrypto"
+       fi
+       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */

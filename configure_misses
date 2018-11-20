@@ -1,0 +1,43 @@
+Configure miss: bsd/libutil.h usability
+Configure miss: bsd/libutil.h presence
+Configure miss: bsd/libutil.h
+Configure miss: linux/ext2_fs.h usability
+Configure miss: linux/ext2_fs.h presence
+Configure miss: linux/ext2_fs.h
+Configure miss: library containing res_9_init
+Configure miss: netinet6/in6.h usability
+Configure miss: netinet6/in6.h presence
+Configure miss: netinet6/in6.h
+Configure miss: if __APPLE_USE_RFC_2292 is helpful
+Configure miss: usable readline in default location
+Configure miss: usable readline in location /usr/local
+Configure miss: usable readline in location /opt/local
+Configure miss: usable readline in location /sw
+Configure miss: usable readline in location /opt/freeware
+Configure miss: usable readline in location /usr/sfw
+Configure miss: fipsld
+Configure miss: dummy
+Configure miss: fipsld
+Configure miss: getipnodebyname prototype
+Configure miss: if _SVID3 is helpful
+Configure miss: if _XPG4_2 is helpful
+Configure miss: struct ifreq.ifr_index
+Configure miss: openpty
+Configure miss: openpty in -lbsd
+Configure miss: SSLv2_client_method
+Configure miss: SSLv2_client_method in -lcrypt
+Configure miss: SSLv2_server_method
+Configure miss: SSLv2_server_method in -lcrypt
+Configure miss: SSLv3_client_method
+Configure miss: SSLv3_client_method in -lcrypt
+Configure miss: SSLv3_server_method
+Configure miss: SSLv3_server_method in -lcrypt
+Configure miss: SSLv23_client_method
+Configure miss: SSLv23_client_method in -lcrypt
+Configure miss: SSLv23_server_method
+Configure miss: SSLv23_server_method in -lcrypt
+Configure miss: RAND_egd
+Configure miss: RAND_egd in -lcrypt
+Configure miss: if printf has Z modifier
+Configure miss: components of libwrap... configure: checked for tcpd.h
+Configure miss: hosts_allow_table
