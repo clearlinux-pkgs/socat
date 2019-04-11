@@ -1,1 +1,26 @@
---enable-help --enable-stdio --enable-fdnum --enable-file --enable-creat --enable-gopen --enable-pipe --enable-termios --enable-unix --enable-ip4 --enable-ip6 --enable-rawip --enable-tcp --enable-udp --enable-listen --enable-proxy --enable-exec --enable-system --enable-pty --enable-readline --enable-openssl --enable-sycls --enable-filan --enable-retry --enable-libwrap --enable-fips
+--enable-creat
+--enable-exec
+--enable-fdnum
+--enable-filan
+--enable-file
+--enable-fips
+--enable-gopen
+--enable-help
+--enable-ip4
+--enable-ip6
+--enable-libwrap
+--enable-listen
+--enable-openssl
+--enable-pipe
+--enable-proxy
+--enable-pty
+--enable-rawip
+--enable-readline
+--enable-retry
+--enable-stdio
+--enable-sycls
+--enable-system
+--enable-tcp
+--enable-termios
+--enable-udp
+--enable-unix
