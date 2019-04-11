@@ -15,6 +15,8 @@ Configure miss: usable readline in location /opt/local
 Configure miss: usable readline in location /sw
 Configure miss: usable readline in location /opt/freeware
 Configure miss: usable readline in location /usr/sfw
+Configure miss: whether to include OpenSSL method option
+Configure miss: whether to include deprecated resolver option
 Configure miss: fipsld
 Configure miss: dummy
 Configure miss: fipsld
@@ -24,18 +26,6 @@ Configure miss: if _XPG4_2 is helpful
 Configure miss: struct ifreq.ifr_index
 Configure miss: openpty
 Configure miss: openpty in -lbsd
-Configure miss: SSLv2_client_method
-Configure miss: SSLv2_client_method in -lcrypt
-Configure miss: SSLv2_server_method
-Configure miss: SSLv2_server_method in -lcrypt
-Configure miss: SSLv3_client_method
-Configure miss: SSLv3_client_method in -lcrypt
-Configure miss: SSLv3_server_method
-Configure miss: SSLv3_server_method in -lcrypt
-Configure miss: SSLv23_client_method
-Configure miss: SSLv23_client_method in -lcrypt
-Configure miss: SSLv23_server_method
-Configure miss: SSLv23_server_method in -lcrypt
 Configure miss: RAND_egd
 Configure miss: RAND_egd in -lcrypt
 Configure miss: if printf has Z modifier
