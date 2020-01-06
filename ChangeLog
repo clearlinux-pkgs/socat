@@ -1,4 +1,40 @@
 
+####################### V 1.7.3.4:
+
+Corrections:
+	Header of xiotermios_speed() declared parameter unsigned int instead of
+	speed_t, thus compiling failed on MacOS
+	Thanks to Joe Strout and others for reporting this bug.
+	Thanks to Andrew Childs and others for sending a patch.
+
+	Under certain circumstances, termios options of the first address were
+	applied to the second address, resulting in error
+	"Inappropriate ioctl for device" 
+	This affected version 1.7.3.3 only.
+	Test: TERMIOS_PH_ALL
+	Thanks to Ivan J. for reporting this issue.
+
+	Socat failed to compile when no poll() system call was found by
+	configure.
+	Thanks to Jason White for sending a patch.
+
+	Due to use of SSL_CTX_clear_mode() Socat failed to compile on old
+	systems with, e.g., OpenSSL-0.9.8. Thanks to Simon Matter and Moritz B.
+	for reporting this problem and sending initial patches.
+
+	getaddrinfo() in IP4-SENDTO and IP6-SENDTO addresses failed with
+	"ai_socktype not supported" when protocol 6 was addressed.
+	The fix removes the possibility to use service names with SCTP.
+	Test: IP_SENDTO_6
+	Thanks to Sören for sending an initial patch.
+
+	Under certain circumstances, Socat printed the "socket ... is at EOF"
+	multiple times.
+	Test: MULTIPLE_EOF
+
+	Newer parts of test.sh used substitutions ${x,,*} or ${x^^*} that are
+	not implemented in older bash versions.
+
 ####################### V 1.7.3.3:
 
 Corrections:
@@ -55,6 +91,7 @@ Corrections:
 	name to decide if it is an IPv4 address. This was not RFC conform. This
 	fix removes the possibility for use of IPv4 addresses with IPv6, e.g.
 	TCP6:127.0.0.1:80
+	Debian issue 695885
 	Thanks to Nicolas Fournil for reporting this issue.
 
 	Print a useful error message when single character options appear to be

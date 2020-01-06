@@ -1,6 +1,9 @@
 Configure miss: bsd/libutil.h usability
 Configure miss: bsd/libutil.h presence
 Configure miss: bsd/libutil.h
+Configure miss: sys/stropts.h usability
+Configure miss: sys/stropts.h presence
+Configure miss: sys/stropts.h
 Configure miss: linux/ext2_fs.h usability
 Configure miss: linux/ext2_fs.h presence
 Configure miss: linux/ext2_fs.h
@@ -28,6 +31,7 @@ Configure miss: openpty
 Configure miss: openpty in -lbsd
 Configure miss: RAND_egd
 Configure miss: RAND_egd in -lcrypt
+Configure miss: SSL_CTX_clear_mode
 Configure miss: if printf has Z modifier
 Configure miss: components of libwrap... configure: checked for tcpd.h
 Configure miss: hosts_allow_table
