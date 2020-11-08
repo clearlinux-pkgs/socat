@@ -4,10 +4,10 @@
 #
 Name     : socat
 Version  : 1.7.3.4
-Release  : 12
+Release  : 13
 URL      : http://www.dest-unreach.org/socat/download/socat-1.7.3.4.tar.gz
 Source0  : http://www.dest-unreach.org/socat/download/socat-1.7.3.4.tar.gz
-Summary  : Multipurpose relay
+Summary  : socat - multipurpose relay
 Group    : Development/Tools
 License  : GPL-2.0 OpenSSL
 Requires: socat-bin = %{version}-%{release}
@@ -61,15 +61,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578329899
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1604874697
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --enable-creat \
 --enable-exec \
@@ -100,7 +99,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1578329899
+export SOURCE_DATE_EPOCH=1604874697
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/socat
 cp %{_builddir}/socat-1.7.3.4/COPYING %{buildroot}/usr/share/package-licenses/socat/4cc77b90af91e615a64ae04893fdffa7939db84c
