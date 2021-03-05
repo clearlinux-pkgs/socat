@@ -12,16 +12,9 @@ Configure miss: netinet6/in6.h usability
 Configure miss: netinet6/in6.h presence
 Configure miss: netinet6/in6.h
 Configure miss: if __APPLE_USE_RFC_2292 is helpful
-Configure miss: usable readline in default location
-Configure miss: usable readline in location /usr/local
-Configure miss: usable readline in location /opt/local
-Configure miss: usable readline in location /sw
-Configure miss: usable readline in location /opt/freeware
-Configure miss: usable readline in location /usr/sfw
+Configure miss: SSL_library_init
 Configure miss: whether to include OpenSSL method option
 Configure miss: whether to include deprecated resolver option
-Configure miss: fipsld
-Configure miss: dummy
 Configure miss: fipsld
 Configure miss: getipnodebyname prototype
 Configure miss: if _SVID3 is helpful
@@ -32,6 +25,7 @@ Configure miss: openpty in -lbsd
 Configure miss: RAND_egd
 Configure miss: RAND_egd in -lcrypt
 Configure miss: SSL_CTX_clear_mode
+Configure miss: SSL_set_tlsext_host_name
 Configure miss: if printf has Z modifier
 Configure miss: components of libwrap... configure: checked for tcpd.h
 Configure miss: hosts_allow_table

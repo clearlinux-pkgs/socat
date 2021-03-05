@@ -1,4 +1,4 @@
-From f7717f2c5d6fdd52d26f7a006abe7a973bb2eb1f Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Gabriel Briones Sayeg <gabriel.briones.sayeg@intel.com>
 Date: Wed, 6 Jul 2016 13:46:23 -0500
 Subject: [PATCH] Adding stddef to nestlex.c
@@ -9,7 +9,7 @@ Signed-off-by: Gabriel Briones Sayeg <gabriel.briones.sayeg@intel.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/nestlex.c b/nestlex.c
-index f4a8962..c0aea3d 100644
+index b64dd38..ece72a5 100644
 --- a/nestlex.c
 +++ b/nestlex.c
 @@ -4,6 +4,8 @@
@@ -21,6 +21,3 @@ index f4a8962..c0aea3d 100644
  #include "config.h"
  #include "mytypes.h"
  
--- 
-2.5.5
-
