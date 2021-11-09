@@ -2,4 +2,3 @@ libc.so.6
 libcrypto.so.1.1
 libreadline.so.8
 libssl.so.1.1
-libutil.so.1

@@ -1,4 +1,83 @@
 ﻿
+####################### V 1.7.4.2:
+
+Corrections:
+	The per address parameters for OpenSSL overlapped in memory with socket
+	parameters. Magically this did not seem to cause problems except on
+	MacOS Catalina that reported errors like:
+	socat[3458] E Select(7, &0x80, NULL, NULL, {140392884396544.000000}):
+	Invalid argument
+	Test: OPENSSL_PARA_OVERLAP
+	Thanks to Ryo Ota for reporting this bug.
+
+	Fixed a few minor coding issues
+
+	A VSOCK warning message was generated with all listening addresses
+	instead of only with VSOCK-LISTEN
+
+	When an OPENSSL-CONNECT client presented a certificate with IPv6
+	subject alternate name and the OPENSSL-LISTEN server had no commonname
+	option, the server crashed with SIGSEGV in xioip6_pton().
+	Test: OPENSSL_CLIENT_IP6_CN
+	Red Hat bug 1981308
+	Thanks to Vlad Slepukhin for reporting this issue and providing a patch
+
+	Corrected a typo in configure.ac that broke option --enable-openssl-base
+	Thanks to john1doe for reporting this issue.
+
+	Socat looped endlessly, not responding to SIGTERM, when a service name
+	(for port) could not be resolved.
+	Test: BAD_SERVICE
+
+	Using options of NAMED group, e.g.chown, with abstract UNIX domain
+	sockets, produced errors because the function was applied with a normal
+	file system related call, e.g.chown(), using file "" (empty name). Instead of
+	chown(), Socat now uses fchown() on the file descriptor. However, such
+	a call usually has no real effect.	
+	Test: ABSTRACT_USER
+	Thanks to Andreas Fink for reporting this issue.
+
+	Option -R did not only dump ("sniff") right-to-left, but also
+	left-to-right traffic to the given file.
+	Test: SNIFF_RIGHT_TO_LEFT
+	Thanks to 1314 gsf for reporting this bug and sending a patch.
+
+	Options -r and -R, when opening a named pipe that has no actual reader,
+	failed with "No such device or address". To solve this problem, Socat
+	now opens the pipe in rw-Mode.
+	Thanks to Cody J.Soultz for sending a patch.
+
+	The call "socat -r - PIPE" traced to file ./- instead of issuing a
+	syntax error.
+
+	Print a message when readbytes option causes EOF
+
+	The ip-recverr option had no effect. Corrected and improved its
+	handling of ancilliary messages, so it is able to analyze ICMP error
+	packets (Linux only?)
+
+	Setgui(), Setuid() calls in xio-progcall.c were useless.
+
+Testing:
+	Prevent the TIMESTAMP tests from sporadically failing due do seconds
+	overflow
+
+	Fixed in test.sh a few issues reported by shellcheck
+
+Documentation:
+	Added missing docu of OpenSSL options min-proto-version,
+	max-proto-version.
+
+	Added missing closing parenthesis in socat.yo.
+	Thanks to Emanuele Torre for reporting this issue.
+
+	Corrected more typos and added missing bug info to CHANGES, performed
+	some non functional corrections.
+
+Porting:
+	Corrected building when clock_gettime() not available, with or without
+	gettimeofday().
+
 ####################### V 1.7.4.1:
 
 Corrections:
@@ -67,6 +146,7 @@ Corrections:
 	packet. The fix makes RECVFROM drop the packet when the second address
 	failed before reading it. Use retry or forever option with the second
 	address if you want to avoid data loss.
+	Fixes Red Hat bug 1907718
 	Thanks to Chunmei Xu for reporting this issue and proving the patch.
 
 	Socats DTLS implementation has been reworked and appears to work now
@@ -111,7 +191,7 @@ Porting:
 	ai_protocol=0 and try again
 	Test: SCTP_SERVICENAME
 
-	Per file filesystem options were still name ext2-* and depended on
+	Per file filesystem options were still named ext2-* and depended on
 	<linux/ext2_fs.h>. Now they are called fs-* and depend on <linux/fs.h>.
 	These fs-* options are also available on old systems with ext2_fs.h
 
@@ -316,7 +396,7 @@ Corrections:
 
 	Print a useful error message when single character options appear to be
 	merged in Socat invocation
-        Test: SOCCAT_OPT_HINT
+        Test: SOCAT_OPT_HINT
 
 	Fixed some docu typos.
 	Thanks to Travis Wellman, Thomas <tjps636>, Dan Kenigsberg,
