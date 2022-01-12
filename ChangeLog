@@ -1,4 +1,57 @@
 ﻿
+####################### V 1.7.4.3:
+
+Corrections:
+	Socat crashed with SIGSEGV when peer presented a certificate without
+	(or empty?) subject.
+	Thanks to Martin Dorey for reporting this issue and sending a patch.
+
+	Socat 1.7.4.2 did not compile on OmniOS (and probably other OpenSolaris
+	distributions)
+	Thanks to Andy Fiddaman for sending a patch.
+
+	Socat since 1.7.4.0 did not compile on Solaris and its derivatives
+	because the getprotobynumber_r() function prototype differ from the
+	Linux version.
+	configure now checks for the variant.
+	Thanks to Robert Zybeck for reporting this issue.
+
+	The variable for the no-sni option was not initialized and could thus
+	break OpenSSL certificate verification. E.g., test OPENSSL_SNI on some
+	platform succeeded with -g but failed with -O compiler option.
+	Thanks to valgrind for quickly finding the cause.
+
+Porting:
+	Again porting Socat to AIX (7.1) - Fixed configure and compile issues:
+	Adapted include requirements for IPv6
+	Guarded MSG_DONTWAIT
+
+	Continued porting Socat to AIX-7.1 - Fixed some runtime errors:
+	UNIX domain sockets of type SEQPACKET are not available.
+	Connecting to UNIX datagram socket fails with EPROTONOSUPPORT (vs.
+	EPROTOTYPE on most other OSes).
+	Streams: Must not push ldterm when it is already active (hangs).
+
+Building:
+	Socats build date and time may now be set externally with environment
+	variable SOURCE_DATE_EPOCH.
+	Thanks to Viktor Kleinik for sending a patch.
+
+	Building Socat in a sub directory failed.
+	Now the following works even for the docu parts:
+	mkdir -p myos; cd myos; ../configure && make; cd ..
+	Thanks to Jon Ringle for sending a patch.
+
+Testing:
+	test.sh: many corrections for AIX's older shell utilities, e.g.sleep(1)
+	does not allow fractions of seconds, grep does not understand '\<';
+	OpenIndiana/SunOS netstat format;
+	many more functional and cosmetic code corrections.
+
+Documentation:
+	The socktype option was documented unspecifically as type option.
+	Thanks to Jonas Metzger for the hint.
+
 ####################### V 1.7.4.2:
 
 Corrections:
