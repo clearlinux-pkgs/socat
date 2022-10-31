@@ -1,4 +1,144 @@
 ﻿
+####################### V 1.7.4.4:
+
+Corrections:
+	In error.c msg2() there was a stack overflow on long messages: The
+	terminating \0 Byte was written behind the last position.
+	Thanks to Martin Liška for sending the address sanitizer report.
+
+	UDP-RECVFROM with fork sometimes terminated when multiple packets
+	arrived. This issue was introduced with a bug fix in version 1.7.4.0.
+	Reason was not handling EAGAIN on recvmsg().
+	Thanks to Jamie McQuillan for reporting this issue.
+
+	Address TCP with options connect-timeout and retry terminated
+	immediately when a connection attempt failed on network error or
+	connection refused.
+	Test: TCP_TIMEOUT_RETRY
+	Thanks to Kamil Holubicki for reporting this issue.
+
+	There were a couple of weaknesses and errors when accessing invalid or
+	incompatible file system entries with UNIX domain, file, and generic
+	addresses.
+	For example, UNIX-CONNECT, when using a non matching socktype, failed
+	with -1 and did not print an error message, instead of printing an
+	error message and exiting with rc=1.
+	Thanks to Paul Wise for reporting and analyzing the case of accessing
+	a left over socket entry with GOPEN.
+
+	The rawer option failed because it tried to clear CREAD.
+	Test: RAWER
+
+	UDP-SEND and UPD-SENDTO with option lowport always bound to port 1
+	instead of a free port in range 640..1023
+	Test: UDP_LOWPORT
+
+	Fixed bad parser error message on "socat /tmp/x\"x/x -"
+
+	Tightened syntax checks to detect numerical arguments that are missing
+	or have trailing garbage.
+	Test: INTEGER_GARBAGE
+
+	ctype(3) functions need there arguments to be unsigned char.
+	Thanks to Taylor R Campbell for sending a patch.
+
+	Filan library uses Socats diag/error message system and therefore had
+	always the signal handler messages socket pair open. This fix avoids
+	this socketpair in standalone Filan.
+
+	Corrected printf format for type socklen_t in two places.
+
+Porting:
+	OpenSSL, at least 1.1 on Ubuntu, crashed with SIGSEGV under certain
+	conditions: client connection to server with certificate with empty
+	subject, and pressing ^C after successful connect.
+	This crash is now prevented by setting OPENSSL_INIT_NO_ATEXIT.
+	Thanks to Martin Dorey for reporting and analyzing this issue, and for
+	providing an environment for reproduction.
+
+	Socat failed to compile on platforms that have
+	IP_ADD_SOURCE_MEMBERSHIP but not struct ip_mreq_source
+	Thanks to Justin Yackoski for sending a patch.
+
+	configure.ac's detection of getprotobynumber_r() variant did not
+	recognize if this function does not exist, e.g. on Musl libc.
+	Thanks to Alexander Kanavin and Baruch Siach for sending patches.
+
+	Corrected message format when no strftime() is available; improved
+	handling of very long host or program names
+
+	Solaris requires that termios options are always applied to the slave
+	side of PTY.
+
+	Fixed ancillary messages on Solaris.
+
+	Filan: Solaris has the open file path infos in /proc/<pid>/path/
+	Thanks to Andy Fiddaman to directing me to the patch.
+
+	Filan now recognizes and prints Solaris doors and event ports.
+
+	Solaris derivatives no longer need librt for clock_gettime()
+	Thanks to Andy Fiddaman to directing me to the patch.
+
+Building:
+	Failure during building documentation, e.g. due to missing Yodl
+	packages, now does not let the build process fail.
+	Feature requested by Seyhun.
+
+Features:
+	Filan prints target of symlink when appropriate
+	Test: FILANSYMLINK
+
+	VSOCK-LISTEN now generates environment variables SOCAT_PEERADDR,
+	SOCAT_PEERPORT, SOCAT_SOCKADDR, SOCAT_SOCKPORT
+	New address aliases VSOCK, VSOCK-L
+
+Documentation:
+	Fixed typo in doc/socat-tun.html and link in README.
+	Thanks to William Suthers for reporting.
+
+	Fixed hard coded path in docu examples.
+	Thanks to Jakub Wilk for sending a patch.
+
+	Updated doc/socat-openssltunnel.html: 2048 bits, commonname
+
+Testing:
+	Unset SOCAT_MAIN_WAIT on informational Socat calls
+
+	SOCAT=socat used ./socat instead of the version derived by $PATH
+
+	Do not try VSOCK_ECHO test when feature is not compiled in.
+
+	Fixed logging of test 220 TUNINTERFACE
+
+	Musl libc refuses to execve() shell scripts, 2 tests needed to be
+	adapted.
+
+	Musl libc has FOPEN_MAX=1000 which made bash dumping core on test
+	EXCEED_FOPEN_MAX.
+
+	Added tests for failures of UNIX socket and GOPEN accesses to non
+	matching file system entries.
+	Tests:
+	CONNECT_TO_MISSING CONNECT_TO_DENIED CONNECT_TO_DIRECTORY
+	CONNECT_TO_ORPHANED CONNECT_TO_FILE CONNECT_TO_DGRAM
+	CONNECT_TO_SEQPACKET SEND_TO_MISSING SEND_TO_DENIED SEND_TO_DIRECTORY
+	SEND_TO_ORPHANED SEND_TO_FILE SEND_TO_STREAM SEND_TO_SEQPACKET
+	SENDTO_TO_MISSING SENDTO_TO_DENIED SENDTO_TO_DIRECTORY
+	SENDTO_TO_ORPHANED SENDTO_TO_FILE SENDTO_TO_STREAM SENDTO_TO_SEQPACKET
+	SEQPACKET_TO_MISSING SEQPACKET_TO_DENIED SEQPACKET_TO_DIRECTORY
+	SEQPACKET_TO_ORPHANED SEQPACKET_TO_FILE SEQPACKET_TO_STREAM
+	SEQPACKET_TO_DGRAM UNIX_TO_MISSING UNIX_TO_DENIED UNIX_TO_DIRECTORY
+	UNIX_TO_FILE UNIX_TO_ORPHANED GOPEN_TO_DENIED GOPEN_TO_DIRECTORY
+	GOPEN_TO_ORPHANED 
+
+	On RHEL-9 SCTP support requires installation of package
+	kernel-modules-extra. test.sh now detects when SCTP is missing in
+	kernel and reacts with warnings instead of errors.
+
+	VSOCK loopback still does not seem to work even in kernel 5.13, so just
+	issue warning on "No such device".
+
 ####################### V 1.7.4.3:
 
 Corrections:

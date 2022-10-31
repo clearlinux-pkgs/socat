@@ -1,3 +1,4 @@
+Configure miss: /proc/*/path
 Configure miss: RAND_egd
 Configure miss: RAND_egd in -lcrypt
 Configure miss: SSL_CTX_clear_mode
@@ -9,7 +10,6 @@ Configure miss: bsd/libutil.h usability
 Configure miss: components of libwrap... configure: checked for tcpd.h
 Configure miss: fipsld
 Configure miss: getipnodebyname prototype
-Configure miss: hosts_allow_table
 Configure miss: if _SVID3 is helpful
 Configure miss: if _XPG4_2 is helpful
 Configure miss: if __APPLE_USE_RFC_2292 is helpful
