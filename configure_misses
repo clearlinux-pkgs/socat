@@ -25,6 +25,7 @@ Configure miss: fipsld
 Configure miss: getipnodebyname prototype
 Configure miss: getipnodebyname prototype
 Configure miss: hosts_allow_table
+Configure miss: hosts_allow_table
 Configure miss: if _SVID3 is helpful
 Configure miss: if _SVID3 is helpful
 Configure miss: if _XPG4_2 is helpful
@@ -49,15 +50,17 @@ Configure miss: netinet6/in6.h usability
 Configure miss: netinet6/in6.h usability
 Configure miss: openpty in -lbsd
 Configure miss: openpty in -lbsd
+Configure miss: stropts.h
+Configure miss: stropts.h
+Configure miss: stropts.h presence
+Configure miss: stropts.h presence
+Configure miss: stropts.h usability
+Configure miss: stropts.h usability
 Configure miss: struct ifreq.ifr_index
 Configure miss: struct ifreq.ifr_index
-Configure miss: sys/stropts.h
-Configure miss: sys/stropts.h
-Configure miss: sys/stropts.h presence
-Configure miss: sys/stropts.h presence
-Configure miss: sys/stropts.h usability
-Configure miss: sys/stropts.h usability
 Configure miss: whether to include OpenSSL method option
 Configure miss: whether to include OpenSSL method option
 Configure miss: whether to include deprecated resolver option
 Configure miss: whether to include deprecated resolver option
+Configure miss: whether to include devtests support
+Configure miss: whether to include devtests support
