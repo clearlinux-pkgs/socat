@@ -24,8 +24,6 @@ Configure miss: fipsld
 Configure miss: fipsld
 Configure miss: getipnodebyname prototype
 Configure miss: getipnodebyname prototype
-Configure miss: hosts_allow_table
-Configure miss: hosts_allow_table
 Configure miss: if _SVID3 is helpful
 Configure miss: if _SVID3 is helpful
 Configure miss: if _XPG4_2 is helpful
